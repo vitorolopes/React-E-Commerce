@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import logo from '../assets/logo.svg'
 import { FaBars } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import { links } from '../utils/constants' //! In <Sidebar> we will use the 
-//! same links that we use in <Navbar> so we create a links variable in utils.js
+import { links } from '../utils/constants' //! In <Sidebar> we will use 
+//! the same links that we use in <Navbar> so we create a links variable in utils.js
 import CartButtons from './CartButtons'
 import { useProductsContext } from '../context/products_context'
 import { useUserContext } from '../context/user_context'
@@ -13,7 +13,6 @@ const Nav = () => {
   return (
     <NavContainer>
       <div className="nav-center">
-      
         <div className="nav-header">
           <Link to="/">
             <img src={logo} alt="comfy slot" />
@@ -35,6 +34,8 @@ const Nav = () => {
             )
           })}
         </ul>
+
+        <CartButtons/>
 
       </div>
     </NavContainer>
