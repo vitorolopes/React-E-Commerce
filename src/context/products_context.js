@@ -14,17 +14,15 @@ import {
 } from '../actions'
 
 const initialState = {
-  //! HERE 1
   isSidebarOpen: false
 }
 
 const ProductsContext = React.createContext()
 
 export const ProductsProvider = ({ children }) => {
-  //! HERE 2
+
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  //! HERE 3
   const openSidebar = () => { 
     dispatch({type: SIDEBAR_OPEN})
   }
@@ -36,7 +34,6 @@ export const ProductsProvider = ({ children }) => {
   return (
     <ProductsContext.Provider 
         value={{
-//! HERE 4
             ...state,
             openSidebar,
             closeSidebar

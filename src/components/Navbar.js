@@ -3,13 +3,15 @@ import styled from 'styled-components'
 import logo from '../assets/logo.svg'
 import { FaBars } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import { links } from '../utils/constants' //! In <Sidebar> we will use 
-//! the same links that we use in <Navbar> so we create a links variable in utils.js
+import { links } from '../utils/constants'
 import CartButtons from './CartButtons'
 import { useProductsContext } from '../context/products_context'
 import { useUserContext } from '../context/user_context'
 
 const Nav = () => {
+   //! HERE 1
+   const { openSidebar} = useProductsContext()
+
   return (
     <NavContainer>
       <div className="nav-center">
@@ -17,7 +19,10 @@ const Nav = () => {
           <Link to="/">
             <img src={logo} alt="comfy slot" />
           </Link>
-          <button type='button' className='nav-toggle'>
+          <button type='button' className='nav-toggle'
+             //! HERE 2
+                  onClick={openSidebar}
+          >
             <FaBars/>
           </button>
         </div>
@@ -108,5 +113,4 @@ const NavContainer = styled.nav`
     }
   }
 `
-
 export default Nav

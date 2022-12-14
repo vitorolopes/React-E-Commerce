@@ -9,34 +9,45 @@ import CartButtons from './CartButtons'
 import { useUserContext } from '../context/user_context'
 
 const Sidebar = () => {
-
-  const isOpen = true
-
-  //! here, to confirm data is being passed from the products context
-  const data = useProductsContext()
-  console.log(data)
+//! HERE 1
+  const {isSidebarOpen, closeSidebar} = useProductsContext()
 
   return (
     <SidebarContainer>
-      <aside className={`${ isOpen ? "sidebar show-sidebar" : "sidebar" }`}>
+                        {/* //! HERE 1a */}
+      <aside className={`${ isSidebarOpen ? "sidebar show-sidebar" : "sidebar" }`}>
 
           <div className="sidebar-header">
             <img src={logo} className="logo" alt="comfy-sloth" />
-            <button className="close-btn" type='button'> 
+            <button className="close-btn" type='button'
+                    //! HERE 2a 
+                    onClick={closeSidebar}
+            > 
               <FaTimes/>
             </button>
           </div>
           
           <ul className='links'>
-            {links.map(({id, text, url})=>{ //! I can destructure right here
+            {links.map(({id, text, url})=>{ //* I can destructure right here
               return(
                 <li key={id}>
-                  <Link to={url}>{text}</Link>
+                  <Link to={url}
+                         //! HERE 2b 
+                         onClick={closeSidebar}
+
+                  >
+                      {text}
+                  </Link>
                 </li>
               )
             })}
             <li >
-              <Link to="/checkout">checkout</Link>
+              <Link to="/checkout"
+                    //! HERE 2c 
+                    onClick={closeSidebar}
+              >
+                checkout
+              </Link>
             </li>
           </ul>
 
@@ -46,7 +57,6 @@ const Sidebar = () => {
     </SidebarContainer>
   )
 }
-
 const SidebarContainer = styled.div`
   text-align: center;
   .sidebar-header {
@@ -117,5 +127,4 @@ const SidebarContainer = styled.div`
     }
   }
 `
-
 export default Sidebar
