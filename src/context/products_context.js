@@ -13,13 +13,35 @@ import {
   GET_SINGLE_PRODUCT_ERROR,
 } from '../actions'
 
-const initialState = {}
+const initialState = {
+  //! HERE 1
+  isSidebarOpen: false
+}
 
 const ProductsContext = React.createContext()
 
 export const ProductsProvider = ({ children }) => {
+  //! HERE 2
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  //! HERE 3
+  const openSidebar = () => { 
+    dispatch({type: SIDEBAR_OPEN})
+  }
+  const closeSidebar = () => { 
+    dispatch({type: SIDEBAR_CLOSE})
+  }
+
+  
   return (
-    <ProductsContext.Provider value='products context'>
+    <ProductsContext.Provider 
+        value={{
+//! HERE 4
+            ...state,
+            openSidebar,
+            closeSidebar
+        }}
+    >
       {children}
     </ProductsContext.Provider>
   )

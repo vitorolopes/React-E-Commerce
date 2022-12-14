@@ -12,6 +12,10 @@ const Sidebar = () => {
 
   const isOpen = true
 
+  //! here, to confirm data is being passed from the products context
+  const data = useProductsContext()
+  console.log(data)
+
   return (
     <SidebarContainer>
       <aside className={`${ isOpen ? "sidebar show-sidebar" : "sidebar" }`}>
