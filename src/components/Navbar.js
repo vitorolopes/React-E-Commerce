@@ -9,7 +9,7 @@ import { useProductsContext } from '../context/products_context'
 import { useUserContext } from '../context/user_context'
 
 const Nav = () => {
-   //! HERE 1
+
    const { openSidebar} = useProductsContext()
 
   return (
@@ -20,7 +20,6 @@ const Nav = () => {
             <img src={logo} alt="comfy slot" />
           </Link>
           <button type='button' className='nav-toggle'
-             //! HERE 2
                   onClick={openSidebar}
           >
             <FaBars/>
