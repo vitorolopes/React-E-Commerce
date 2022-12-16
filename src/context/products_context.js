@@ -31,7 +31,6 @@ export const ProductsProvider = ({ children }) => {
   }
 
   const fetchProducts = async (url) => {
-    //! HERE 1
     dispatch({type: GET_PRODUCTS_BEGIN})
     try {
       const response = await axios.get(url)
