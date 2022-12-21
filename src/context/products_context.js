@@ -64,7 +64,6 @@ export const ProductsProvider = ({ children }) => {
             ...state,
             openSidebar,
             closeSidebar,
-            //! HERE
             fetchSingleProduct
         }}
     >
