@@ -15,7 +15,6 @@ const initialState = {
   products_error: false,
   products: [],
   featured_products: [],
-//! HERE 1
   single_product_loading: false,
   single_product_error: false,
   single_product: {},
@@ -33,7 +32,6 @@ export const ProductsProvider = ({ children }) => {
   const closeSidebar = () => { 
     dispatch({type: SIDEBAR_CLOSE})
   }
-
   const fetchProducts = async (url) => {
     dispatch({type: GET_PRODUCTS_BEGIN})
     try {
@@ -45,7 +43,6 @@ export const ProductsProvider = ({ children }) => {
     }
  
   }
-//! HERE 2
   const fetchSingleProduct = async(url) => { 
     dispatch({type: GET_SINGLE_PRODUCT_BEGIN})
     try {
@@ -66,7 +63,9 @@ export const ProductsProvider = ({ children }) => {
         value={{
             ...state,
             openSidebar,
-            closeSidebar
+            closeSidebar,
+            //! HERE
+            fetchSingleProduct
         }}
     >
       {children}

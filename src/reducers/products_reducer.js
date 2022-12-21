@@ -29,7 +29,7 @@ const products_reducer = (state, action) => {
   if(action.type === GET_PRODUCTS_ERROR) {
     return {...state, products_loading: false, products_error: true }
   }
-//! HERE 1
+
   if(action.type === GET_SINGLE_PRODUCT_BEGIN){
     // But just in case there's some old error that's still sticking 
     // around, I'm going to go with single_product_error:false.
