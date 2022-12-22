@@ -1,8 +1,30 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-const ProductImages = () => {
-  return <h4>product images</h4>
+const ProductImages = ({images = [{url: ""}] }) => { //! HERE 2
+ console.log(images) // At the beginning images is undefined
+// so we set images default value to an empty array ...
+ const [main, setMain] = useState(images[0]) // ... otherwise we would 
+// get an error here ... "Cannot read properties of undefined (reading '0')"
+
+  return (
+    <Wrapper>
+      {/* //! HERE 1 */}
+      <img src={main.url} alt="main" className='main'/>
+      {/* // Now we are getting the same type of error as above ...
+          // ... "Cannot read properties of undefined (reading 'url')" */}
+      <div className="gallery">
+        {images.map((image,index)=>{
+          return(
+            <img src={image.url} alt={image.filename} key={index}
+                 onClick={() => setMain(images[index])}
+                 className={`${image.url === main.url ? "active": null}`}
+            />
+          )
+        })}
+      </div>
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.section`
@@ -51,3 +73,5 @@ const Wrapper = styled.section`
 `
 
 export default ProductImages
+
+

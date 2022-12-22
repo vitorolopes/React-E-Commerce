@@ -35,18 +35,19 @@ const SingleProductPage = () => {
   if(error){
     return <Error/>
   }
-//! HERE 1
+
   const {name, price, description, stock, stars, 
         review, id: sku, company, images} = product
 
   return( 
-//! HERE 2
     <Wrapper>
       <PageHero title={name} product/>
       <div className="section section-center page">
         <Link to="/products" className='btn'>back to products</Link>
-        <div className="products-center">
-          <ProductImages/>
+        <div className="product-center">
+                   {/* //! HERE 1 */}
+          <ProductImages images={images}/>
+
           <section className="content">
             <h2>{name}</h2>
             <Stars/>
