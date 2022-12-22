@@ -9,7 +9,6 @@ const ProductImages = ({images = [{url: ""}] }) => { //! HERE 2
 
   return (
     <Wrapper>
-      {/* //! HERE 1 */}
       <img src={main.url} alt="main" className='main'/>
       {/* // Now we are getting the same type of error as above ...
           // ... "Cannot read properties of undefined (reading 'url')" */}

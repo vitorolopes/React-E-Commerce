@@ -37,7 +37,7 @@ const SingleProductPage = () => {
   }
 
   const {name, price, description, stock, stars, 
-        review, id: sku, company, images} = product
+        reviews, id: sku, company, images} = product
 
   return( 
     <Wrapper>
@@ -45,12 +45,10 @@ const SingleProductPage = () => {
       <div className="section section-center page">
         <Link to="/products" className='btn'>back to products</Link>
         <div className="product-center">
-                   {/* //! HERE 1 */}
           <ProductImages images={images}/>
-
           <section className="content">
             <h2>{name}</h2>
-            <Stars/>
+            <Stars stars={stars} reviews={reviews}/>
             <h5 className='price'>{formatPrice(price)}</h5>
             <p className='description'>{description}</p>
             <p className="info">
