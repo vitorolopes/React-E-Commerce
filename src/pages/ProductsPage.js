@@ -4,9 +4,18 @@ import { Filters, ProductList, Sort, PageHero } from '../components'
 
 const ProductsPage = () => {
   return (
-    <Wrapper>
-       <PageHero title="products"/>
-  </Wrapper>
+    <main>
+      <PageHero title="products"/>
+      <Wrapper className='page'>
+        <div className="section-center products">
+          <Filters/>
+          <div>
+            <Sort/>
+            <ProductList/>
+          </div>
+        </div>
+      </Wrapper>
+    </main>
   )
 }
 

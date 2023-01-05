@@ -27,7 +27,7 @@ const Stars = ({stars, reviews}) => {
       <div className="stars">
         {tempStars}
       </div>
-      <p className="reviews">( {reviews} custumer reviews )</p>
+      <p className="reviews">( {reviews} costumer reviews )</p>
     </Wrapper>
   )
 }
