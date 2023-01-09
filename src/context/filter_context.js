@@ -9,9 +9,7 @@ import { useProductsContext } from './products_context'
 const  initialState = {
   filtered_products: [],
   all_products: [],
-//! HERE
   grid_view: true
-
 }
 
 const FilterContext = React.createContext()
