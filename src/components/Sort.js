@@ -6,21 +6,20 @@ import styled from 'styled-components'
 const Sort = () => {
 
   const {filtered_products: products, grid_view,
-//! HERE 1
-        setGridView, setListView  
+         setGridView, setListView,
+         //! HERE 1
+         sort, updateSort  
         } = useFilterContext()
 
   return (
     <Wrapper> 
       <div className="btn-container">
         <button type='button' className={`${grid_view ? "active" : null}`}
-                //! HERE 2
                 onClick={setGridView}
         >
           <BsFillGridFill/>
         </button>
         <button type='button' className={`${!grid_view ? "active" : null}`}
-                //! HERE 3
                 onClick={setListView}
         >
           <BsList/>
@@ -31,7 +30,10 @@ const Sort = () => {
       <hr />
       <form>
          <label htmlForm="sort">sort by</label>
-         <select name="sort" id="sort" className='sort-input'>
+         <select name="sort" id="sort" className='sort-input'
+          //! HERE 2
+            value={sort} onChange={updateSort}
+         >
           <option value="price-lowest">price (lowest)</option>
           <option value="price-highest">price (highest)</option>
           <option value="name-a">name(a-z)</option>
