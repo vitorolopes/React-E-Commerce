@@ -23,12 +23,21 @@ export const FilterProvider = ({ children }) => {
   useEffect(() => {
     dispatch({type: LOAD_PRODUCTS, payload: products})  
   }, [products])
+//! HERE 1
+  const setGridView = () => {
+    dispatch({type: SET_GRIDVIEW})
+  }
+  const setListView = () => {
+    dispatch({type: SET_LISTVIEW})
+  }
   
   return (
     <FilterContext.Provider 
       value=
         {{
-          ...state
+          ...state,
+          setGridView,
+          setListView
         }}
     >
       {children}
