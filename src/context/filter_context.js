@@ -10,7 +10,6 @@ const  initialState = {
   filtered_products: [],
   all_products: [],
   grid_view: true,
-//! HERE 1
   sort:"price-lowest"
 }
 
@@ -25,6 +24,13 @@ export const FilterProvider = ({ children }) => {
   useEffect(() => {
     dispatch({type: LOAD_PRODUCTS, payload: products})  
   }, [products])
+//! HERE 1
+  useEffect(() => {
+    dispatch({ type: SORT_PRODUCTS })
+  }, [products, state.sort])
+// we pass products as a dependency because initially products is an empty array 
+// and we want to run it when it changes, as well as when we filter stuff.
+
 
   const setGridView = () => {
     dispatch({type: SET_GRIDVIEW})
@@ -33,7 +39,6 @@ export const FilterProvider = ({ children }) => {
     dispatch({type: SET_LISTVIEW})
   }
 
-//! HERE 2
   const updateSort = (e) => { 
     const value = e.target.value
     dispatch({type: UPDATE_SORT, payload: value})
@@ -46,7 +51,6 @@ export const FilterProvider = ({ children }) => {
           ...state,
           setGridView,
           setListView,
-          //! HERE 3
           updateSort
         }}
     >
