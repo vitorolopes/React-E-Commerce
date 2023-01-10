@@ -47,12 +47,10 @@ const filter_reducer = (state, action) => {
     }
     return {...state, filtered_products: tempProducts}
   }
-//! HERE 1
   if(action.type === UPDATE_FILTERS){
     const {name,value} = action.payload
     return {...state, filters:{...state.filters, [name]: value}}
   }
-//! HERE 2
   if(action.type === FILTER_PRODUCTS){
     console.log("Filtering products")
     console.log("This is just a placeholder for the time being")
