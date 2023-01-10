@@ -7,10 +7,20 @@ import {
 const filter_reducer = (state, action) => {
 
   if(action.type === LOAD_PRODUCTS){
+//! HERE 1
+    let maxPrice = action.payload.map(p => p.price)
+    maxPrice = Math.max(...maxPrice) 
+// I cannot pass the array directly to Math.max()
+// so I use the spread operator
+    console.log(maxPrice)
+
     return {...state, 
             all_products: [...action.payload],
-            filtered_products: [...action.payload]
+            filtered_products: [...action.payload],
+//! HERE 2
+            filters: {...state.filters, max_price: maxPrice, price: maxPrice  }
           }
+          
   }
 
   if(action.type === SET_GRIDVIEW){
@@ -22,7 +32,7 @@ const filter_reducer = (state, action) => {
   if(action.type === UPDATE_SORT){
     return {...state, sort: action.payload}
   }
-//! HERE 1
+
   if (action.type === SORT_PRODUCTS) {
     const { sort, filtered_products } = state
     let tempProducts = [...filtered_products]
