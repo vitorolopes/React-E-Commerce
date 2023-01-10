@@ -11,7 +11,6 @@ const  initialState = {
   all_products: [],
   grid_view: true,
   sort:"price-lowest",
-//! HERE 1
   filters: {
     text: "",
     company: "all",
@@ -37,11 +36,12 @@ export const FilterProvider = ({ children }) => {
   }, [products])
 
   useEffect(() => {
-    dispatch({ type: SORT_PRODUCTS })
-  }, [products, state.sort])
-// we pass products as a dependency because initially products is an empty array 
-// and we want to run it when it changes, as well as when we filter stuff.
+    //! HERE 4
+    dispatch({type: FILTER_PRODUCTS})
 
+    dispatch({ type: SORT_PRODUCTS })
+                          //! HERE 3
+  }, [products, state.sort, state.filters])
 
   const setGridView = () => {
     dispatch({type: SET_GRIDVIEW})
@@ -53,23 +53,29 @@ export const FilterProvider = ({ children }) => {
   const updateSort = (e) => { 
     const value = e.target.value
     dispatch({type: UPDATE_SORT, payload: value})
-   }
+  }
+//! HERE 1
+  const updateFilters = (e) => { 
+    let name = e.target.name
+    let value = e.target.value
+    dispatch({type: UPDATE_FILTERS, payload:{name,value}})
+  }
+  const clearFilters = () => {  }
   
   return (
     <FilterContext.Provider 
       value=
         {{
-          ...state,
-          setGridView,
-          setListView,
-          updateSort
+          ...state,setGridView, setListView, updateSort,
+//! HERE 2
+          updateFilters,clearFilters
         }}
     >
       {children}
     </FilterContext.Provider>
   )
 }
-// make sure use
+
 export const useFilterContext = () => {
   return useContext(FilterContext)
 }

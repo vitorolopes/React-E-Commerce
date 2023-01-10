@@ -7,20 +7,14 @@ import {
 const filter_reducer = (state, action) => {
 
   if(action.type === LOAD_PRODUCTS){
-//! HERE 1
     let maxPrice = action.payload.map(p => p.price)
     maxPrice = Math.max(...maxPrice) 
-// I cannot pass the array directly to Math.max()
-// so I use the spread operator
-    console.log(maxPrice)
 
     return {...state, 
             all_products: [...action.payload],
             filtered_products: [...action.payload],
-//! HERE 2
             filters: {...state.filters, max_price: maxPrice, price: maxPrice  }
           }
-          
   }
 
   if(action.type === SET_GRIDVIEW){
@@ -32,7 +26,6 @@ const filter_reducer = (state, action) => {
   if(action.type === UPDATE_SORT){
     return {...state, sort: action.payload}
   }
-
   if (action.type === SORT_PRODUCTS) {
     const { sort, filtered_products } = state
     let tempProducts = [...filtered_products]
@@ -53,6 +46,17 @@ const filter_reducer = (state, action) => {
       })
     }
     return {...state, filtered_products: tempProducts}
+  }
+//! HERE 1
+  if(action.type === UPDATE_FILTERS){
+    const {name,value} = action.payload
+    return {...state, filters:{...state.filters, [name]: value}}
+  }
+//! HERE 2
+  if(action.type === FILTER_PRODUCTS){
+    console.log("Filtering products")
+    console.log("This is just a placeholder for the time being")
+    return {...state}
   }
 
   throw new Error(`No Matching "${action.type}" - action type`)
