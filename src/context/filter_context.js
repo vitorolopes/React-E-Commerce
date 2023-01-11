@@ -46,15 +46,18 @@ export const FilterProvider = ({ children }) => {
   const setListView = () => {
     dispatch({type: SET_LISTVIEW})
   }
-
   const updateSort = (e) => { 
     const value = e.target.value
     dispatch({type: UPDATE_SORT, payload: value})
   }
-
   const updateFilters = (e) => { 
     let name = e.target.name
     let value = e.target.value
+//! HERE 1 
+    if(name === "category"){
+      value = e.target.textContent //* This will give the text inside the button 
+    }
+
     dispatch({type: UPDATE_FILTERS, payload:{name,value}})
   }
   const clearFilters = () => {  }
