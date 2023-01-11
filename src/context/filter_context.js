@@ -57,19 +57,25 @@ export const FilterProvider = ({ children }) => {
     if(name === "category"){
       value = e.target.textContent //* This will give the text inside the button 
     }
-
     if(name === "color"){
       value = e.target.dataset.color //* This will give the value of data-color 
     }
-    //! HERE 1
     if(name === "price"){
       value = Number(value)
+    }
+//! HERE 1
+    if(name === "shipping"){
+      value = e.target.checked
     }
 
     dispatch({type: UPDATE_FILTERS, payload:{name,value}})
   }
 
-  const clearFilters = () => {  }
+  const clearFilters = () => { 
+//! HERE 2
+    dispatch({type: CLEAR_FILTERS})
+
+  }
   
   return (
     <FilterContext.Provider 

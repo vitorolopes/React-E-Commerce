@@ -55,6 +55,22 @@ const filter_reducer = (state, action) => {
     console.log("This is just a placeholder for the time being")
     return {...state}
   }
+//! HERE 1
+  if(action.type===CLEAR_FILTERS){
+    return {...state,
+            filters: {
+              ...state.filters, // I don´t want to set max_price and min_price
+              // to zero again I want to leave as is. So I use ...state.filters 
+              // and I don´t overwrite this properties ...
+              text: "",
+              company: "all",
+              category: "all",
+              color: "all",
+              price: state.filters.max_price, // ... The same goes for price.
+              shipping: false
+            }
+    }
+  }
 
   throw new Error(`No Matching "${action.type}" - action type`)
 }
