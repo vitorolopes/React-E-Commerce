@@ -82,7 +82,6 @@ const Filters = () => {
             <div className="colors">
               {colors.map((c,index)=>{
                 console.log(colors);
-              //! HERE 1
               if(c==="all"){
                 return(
                   <button type='button' key={index} 
@@ -108,6 +107,17 @@ const Filters = () => {
             </div>
           </div>
           {/* end of colors */}
+{/* //! HERE 1 */}
+          {/* price */}
+          <div className="form-control">
+            <h5>price</h5>
+            <p className="price">{formatPrice(price)}</p>
+            <input type="range" name='price'                   
+                   min={min_price} max={max_price} 
+                   value={price} onChange={updateFilters} 
+            />
+          </div>
+          {/* end of price */}
         </form>
       </div>
     </Wrapper>

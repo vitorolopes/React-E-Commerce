@@ -61,6 +61,10 @@ export const FilterProvider = ({ children }) => {
     if(name === "color"){
       value = e.target.dataset.color //* This will give the value of data-color 
     }
+    //! HERE 1
+    if(name === "price"){
+      value = Number(value)
+    }
 
     dispatch({type: UPDATE_FILTERS, payload:{name,value}})
   }
