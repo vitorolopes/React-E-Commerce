@@ -58,8 +58,13 @@ export const FilterProvider = ({ children }) => {
       value = e.target.textContent //* This will give the text inside the button 
     }
 
+    if(name === "color"){
+      value = e.target.dataset.color //* This will give the value of data-color 
+    }
+
     dispatch({type: UPDATE_FILTERS, payload:{name,value}})
   }
+
   const clearFilters = () => {  }
   
   return (
