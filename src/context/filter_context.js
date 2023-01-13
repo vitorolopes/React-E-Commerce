@@ -63,16 +63,13 @@ export const FilterProvider = ({ children }) => {
     if(name === "price"){
       value = Number(value)
     }
-//! HERE 1
     if(name === "shipping"){
       value = e.target.checked
     }
 
     dispatch({type: UPDATE_FILTERS, payload:{name,value}})
   }
-
   const clearFilters = () => { 
-//! HERE 2
     dispatch({type: CLEAR_FILTERS})
 
   }

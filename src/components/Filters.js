@@ -117,7 +117,7 @@ const Filters = () => {
             />
           </div>
           {/* end of price */}
-{/* //! HERE 1 */}
+
           {/* shipping */}
           <div className="form-control shipping">
             <label htmlFor="shipping">free shipping</label>
@@ -126,14 +126,15 @@ const Filters = () => {
             />
           </div>
           {/* end of shipping */}
+          
         </form>
-{/* //! HERE 2 */}
+
         <button type='button' className='clear-btn'
                 onClick={clearFilters}
         >
           clear filters
         </button>
-        
+
       </div>
     </Wrapper>
   )
