@@ -20,11 +20,17 @@ const CartContext = React.createContext()
 export const CartProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
+//! HERE 1
+  const addToCart = (id, color, amount, product) => {
+    dispatch({type: ADD_TO_CART, payload: {id, color, amount, product}})
+  }
 
   return (
     <CartContext.Provider 
       value={{
-          ...state
+          ...state,
+          //! HERE 2
+          addToCart
       }}
     >{children}</CartContext.Provider>
   )
