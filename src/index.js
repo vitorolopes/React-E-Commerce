@@ -15,7 +15,14 @@ root.render(
   <ProductsProvider>
 
     <FilterProvider>
-       <App />
+
+    {/* //! HERE */}
+      <CartProvider>
+
+        <App />
+
+      </CartProvider>
+      
     </FilterProvider>
 
   </ProductsProvider>

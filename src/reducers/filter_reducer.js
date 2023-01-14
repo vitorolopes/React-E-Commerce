@@ -52,11 +52,9 @@ const filter_reducer = (state, action) => {
     return {...state, filters:{...state.filters, [name]: value}}
   }
   if(action.type === FILTER_PRODUCTS){
-  //! HERE
     const {all_products} = state
     const {text, category, company, color, price, shipping} = state.filters
-    // console.log("Filtering products")
-    // console.log("This is just a placeholder for the time being")
+
     let tempProducts = [...all_products]
     //* filtering
     if(text){
