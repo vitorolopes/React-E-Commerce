@@ -36,14 +36,16 @@ export const CartProvider = ({ children }) => {
   }
   // remove item
   const removeItem = (id) => { 
-//! HERE 1
     dispatch({type: REMOVE_CART_ITEM, payload: id})  
   }
   // toggle amount
-  const toggleAmount = (id, value) => {  }
+  const toggleAmount = (id, value) => { 
+//! HERE 1
+    console.log(id,value);
+    dispatch({type: TOGGLE_CART_ITEM_AMOUNT, payload: {id, value}})
+  }
   // clear cart
   const clearCart = () => { 
-//! HERE 2 
     dispatch({type: CLEAR_CART})
    }
 

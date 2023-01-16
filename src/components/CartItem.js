@@ -9,8 +9,14 @@ const CartItem = ({id, image, name, color, price, amount}) => {
 
   const {removeItem, toggleAmount} = useCartContext()
 
-  const increase = () => {   }
-  const decrease = () => {   }
+  const increase = () => {  
+//! HERE 1
+    toggleAmount(id, "inc")
+  }
+  const decrease = () => {
+//! HERE 2  
+    toggleAmount(id, "dec")
+  }
 
   return (
     <Wrapper>
