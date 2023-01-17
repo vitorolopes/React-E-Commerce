@@ -15,21 +15,24 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // 4BpoAxJxjAOKtD2ktrIFFzYZRpmQqkKQ
 
 root.render(
-//! HERE 
   <Auth0Provider
     domain='dev-k8exjz54buyom02n.us.auth0.com'
     clientId='4BpoAxJxjAOKtD2ktrIFFzYZRpmQqkKQ'
     redirectUri={window.location.origin}
     cacheLocation="localstorage"
   >
+{/* //! HERE  */}
+    <UserProvider>
 
-    <ProductsProvider>
-      <FilterProvider>
-        <CartProvider>
-          <App />
-        </CartProvider>
-      </FilterProvider>
-    </ProductsProvider>
+      <ProductsProvider>
+        <FilterProvider>
+          <CartProvider>
+            <App />
+          </CartProvider>
+        </FilterProvider>
+      </ProductsProvider>
+
+    </UserProvider>
 
   </Auth0Provider>
 );
