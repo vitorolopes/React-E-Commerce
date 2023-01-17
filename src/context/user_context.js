@@ -5,7 +5,7 @@ const UserContext = React.createContext()
 export const UserProvider = ({ children }) => {
 
   const {isAuthenticated, loginWithRedirect, logout, 
-        user , isLoading} = useAuth0()
+         user , isLoading} = useAuth0()
 
   const [myUser, setMyUser] = useState(null)
 

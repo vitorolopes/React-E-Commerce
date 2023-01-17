@@ -21,9 +21,7 @@ root.render(
     redirectUri={window.location.origin}
     cacheLocation="localstorage"
   >
-{/* //! HERE  */}
     <UserProvider>
-
       <ProductsProvider>
         <FilterProvider>
           <CartProvider>
@@ -31,9 +29,7 @@ root.render(
           </CartProvider>
         </FilterProvider>
       </ProductsProvider>
-
     </UserProvider>
-
   </Auth0Provider>
 );
 
