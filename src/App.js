@@ -41,8 +41,14 @@ function App() {
         <Route exact path="/products" element={ <Products/> } />
         
         <Route exact path="/products/:id" element={ <SingleProduct/> } />
-
-        <Route exact path="/checkout" element={ <Checkout/> } />
+{/* //! HERE  */}
+        {/* <Route exact path="/checkout" element={ <Checkout/> } /> */}
+        <Route exact path="/checkout" element={ 
+                                                <PrivateRoute>
+                                                    <Checkout/>
+                                                </PrivateRoute> 
+                                              } 
+        />
 
         <Route  path="*" element={ <Error/> } />
 
