@@ -8,19 +8,19 @@ export const UserProvider = ({ children }) => {
          user , isLoading} = useAuth0()
 
   const [myUser, setMyUser] = useState(null)
-
-  useEffect(() => {
-    console.log("user: ",user)
-    console.log("isAutheticated: ", isAuthenticated)
-    console.log("isLoading: ", isLoading)
-    if(isAuthenticated){
+//! HERE
+  // useEffect(() => {
+  //   console.log("isLoading: ", isLoading)
+  //   if(isAuthenticated){
+  //     setMyUser(user)
+  //   } else {
+  //     setMyUser(false)
+  //   }
+  // }, [isAuthenticated])
+    useEffect(() => {
       setMyUser(user)
-    } else {
-      setMyUser(false)
-    }
-
-  }, [isAuthenticated])
-  
+    }, [user])
+    
   return (
     <UserContext.Provider 
       value={{
@@ -31,7 +31,6 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   )
 }
-// make sure use
 export const useUserContext = () => {
   return useContext(UserContext)
 }

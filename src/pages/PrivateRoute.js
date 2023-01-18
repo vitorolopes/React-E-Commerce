@@ -8,11 +8,12 @@ const PrivateRoute = ({children, ...rest}) => {
 
   console.log(children);
   console.log(rest)
-
-  const {myUser} = useUserContext()
+//! HERE
+  // const {myUser} = useUserContext()
+  const {user} = useAuth0()
 
   return (
-            myUser ? children : <Navigate to="/"/>
+            user ? children : <Navigate to="/"/>
           )
 };
 export default PrivateRoute;

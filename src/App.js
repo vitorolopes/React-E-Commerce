@@ -24,39 +24,44 @@ import {
 
 function App() {
   return (
-    <Router>
+// ! HERE 
+    <AuthWrapper>
 
-      <Navbar/>
+      <Router>
 
-      <Sidebar/>
+        <Navbar/>
 
-      <Routes>
+        <Sidebar/>
 
-        <Route exact path="/" element={ <Home/> } />
+        <Routes>
 
-        <Route exact path="/about" element={ <About/> } />
+          <Route exact path="/" element={ <Home/> } />
 
-        <Route exact path="/cart" element={ <Cart/> } />
-        
-        <Route exact path="/products" element={ <Products/> } />
-        
-        <Route exact path="/products/:id" element={ <SingleProduct/> } />
-{/* //! HERE  */}
-        {/* <Route exact path="/checkout" element={ <Checkout/> } /> */}
-        <Route exact path="/checkout" element={ 
-                                                <PrivateRoute>
-                                                    <Checkout/>
-                                                </PrivateRoute> 
-                                              } 
-        />
+          <Route exact path="/about" element={ <About/> } />
 
-        <Route  path="*" element={ <Error/> } />
+          <Route exact path="/cart" element={ <Cart/> } />
+          
+          <Route exact path="/products" element={ <Products/> } />
+          
+          <Route exact path="/products/:id" element={ <SingleProduct/> } />
 
-      </Routes>
+          {/* <Route exact path="/checkout" element={ <Checkout/> } /> */}
+          <Route exact path="/checkout" element={ 
+                                                  <PrivateRoute>
+                                                      <Checkout/>
+                                                  </PrivateRoute> 
+                                                } 
+          />
 
-      <Footer/>
+          <Route  path="*" element={ <Error/> } />
 
-    </Router>
+        </Routes>
+
+        <Footer/>
+
+      </Router>
+
+    </AuthWrapper>
   )
 }
 export default App
