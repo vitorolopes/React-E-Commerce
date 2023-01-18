@@ -25,7 +25,7 @@ const CartButtons = () => {
             </span>
           </span>
         </Link>
-{/* //! HERE 1 */}
+
         { myUser ?        
           (
             <button type='button' className='auth-btn'

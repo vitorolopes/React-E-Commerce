@@ -11,6 +11,8 @@ import { useUserContext } from '../context/user_context'
 const Sidebar = () => {
 
   const {isSidebarOpen, closeSidebar} = useProductsContext()
+//! HERE 1
+  const {myUser} = useUserContext()
 
   return (
     <SidebarContainer>
@@ -27,7 +29,7 @@ const Sidebar = () => {
           </div>
           
           <ul className='links'>
-            {links.map(({id, text, url})=>{ //* I can destructure right here
+            {links.map(({id, text, url})=>{ 
               return(
                 <li key={id}>
                   <Link to={url}
@@ -39,13 +41,15 @@ const Sidebar = () => {
                 </li>
               )
             })}
-            <li >
-              <Link to="/checkout"
-                    onClick={closeSidebar}
-              >
-                checkout
-              </Link>
-            </li>
+{/* //! HERE 2  */}
+            {myUser && (
+               <li>
+                <Link to="/checkout" onClick={closeSidebar}>
+                  checkout
+                </Link>
+               </li>
+            )}
+
           </ul>
 
           <CartButtons/>
