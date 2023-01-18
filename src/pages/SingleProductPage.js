@@ -18,6 +18,7 @@ const SingleProductPage = () => {
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`)
+    // eslint-disable-next-line
   }, [id])
   console.log(product)
 
@@ -27,6 +28,7 @@ const SingleProductPage = () => {
        navigate("/")
       },3000)
     }
+    // eslint-disable-next-line
   }, [error]) // When we start fetching error is false
   
   if(loading){

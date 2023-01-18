@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-const ProductImages = ({images = [{url: ""}] }) => { //! HERE 2
+const ProductImages = ({images = [{url: ""}] }) => { 
  console.log(images) // At the beginning images is undefined
 // so we set images default value to an empty array ...
  const [main, setMain] = useState(images[0]) // ... otherwise we would 
