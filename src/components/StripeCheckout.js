@@ -22,7 +22,8 @@ const CheckoutForm = () => {
   const [error, setError] = useState(null)
   const [processing, setProcessing] = useState("")
   const [disabled, setDisabled] = useState(true)
-  const [client, setClient] = useState("") // this will come from the Netlify
+               //! HERE 2a      2a (changed the state variables name client->clientSecret)
+  const [clientSecret, setClientSecret] = useState("") // this will come from the Netlify
   // serverless function that we are going to create
   const stripe = useStripe() // A stripe hook
   const elements = useElements() // A stripe hook
@@ -44,20 +45,32 @@ const CheckoutForm = () => {
       },
     },
   }
-//! HERE 1
+
   const createPaymentIntent = async () => { 
-    console.log("Hello from Stripe");
+    try {  
+      const data = await axios.post(
+        "/.netlify/functions/create-payment-intent",
+        JSON.stringify({cart, shipping_fee, total_amount})
+    )
+    //! HERE 1
+    console.log(data);
+    //! HERE 2
+    setClientSecret(data.data.clientSecret)
+
+    } catch (error) {
+      console.log(error);
+    }
   }
+
   const handleChange = async (event) => {  }
   const handleSubmint = async (ev) => {  }
-//! HERE 2
+
   useEffect(() => {
     createPaymentIntent()
     // eslint-disable-next-line
   }, [])
   
   return (
-  //! HERE 3
     <div>
       <form id="payment-form" className="payment-form">
         <CardElement id="card-element" options={cardStyle}
@@ -73,10 +86,11 @@ const CheckoutForm = () => {
         {error && ( <div className='card-error' role="alert">{error}</div> )}
 {/* Show a success message upon completion */}
         <p className={succeeded ? "result-message" : " result-message hidden"}>
-          Payment succeeded, see the result in your   
+          Payment succeeded, see the result in your &nbsp;   
             <a href={`https://dashboard.stripe.com/test/payments`}>
-                Stripe dashboard
+                Stripe dashboard. 
             </a>
+            <br />
           Refresh the page to pay again
         </p>
       </form>
