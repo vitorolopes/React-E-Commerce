@@ -18,11 +18,10 @@ const CheckoutForm = () => {
   // const history = useHistory();
   const history = useNavigate();
   // STRIPE STUFF
-  const [succeeded, setSucceeded] = useState(true)
+  const [succeeded, setSucceeded] = useState(false)
   const [error, setError] = useState(null)
   const [processing, setProcessing] = useState("")
   const [disabled, setDisabled] = useState(true)
-               //! HERE 2a      2a (changed the state variables name client->clientSecret)
   const [clientSecret, setClientSecret] = useState("") // this will come from the Netlify
   // serverless function that we are going to create
   const stripe = useStripe() // A stripe hook
@@ -52,18 +51,42 @@ const CheckoutForm = () => {
         "/.netlify/functions/create-payment-intent",
         JSON.stringify({cart, shipping_fee, total_amount})
     )
-    //! HERE 1
     console.log(data);
-    //! HERE 2
     setClientSecret(data.data.clientSecret)
-
     } catch (error) {
       console.log(error);
     }
   }
 
-  const handleChange = async (event) => {  }
-  const handleSubmint = async (ev) => {  }
+  const handleChange = async (event) => {  
+  //! HERE 2
+    setDisabled(event.empty)
+    setError(event.error ? event.error.message : "")
+  }
+  const handleSubmit = async (ev) => {
+      //! HERE 3 
+    ev.preventDefault()
+    setProcessing(true)
+    const payload = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+          card: elements.getElement(CardElement)
+      }
+    })
+    if(payload.error){
+      setError(`Payment failed ${payload.error.message}`)
+      setProcessing(false)
+    } else{
+      setError(null)
+      setProcessing(false)
+      setSucceeded(true)
+      //! HERE 4  
+    
+      setTimeout(()=>{
+        clearCart()
+        history("/")
+      }, 10000)
+    }
+  }
 
   useEffect(() => {
     createPaymentIntent()
@@ -72,7 +95,22 @@ const CheckoutForm = () => {
   
   return (
     <div>
-      <form id="payment-form" className="payment-form">
+{/* //! HERE 1 */}
+      {succeeded ? 
+            (<article> 
+              <h4>Thank you</h4>
+              <h4>Your payment was successful!</h4>
+              <h4>Redirecting to home page shortly</h4>
+            </article>)
+                 :
+            (<article>
+              <h4>Hello, {myUser && myUser.name}</h4>
+              <p>Your total is {formatPrice(shipping_fee + total_amount)}</p>
+              <p>Test Card Number : 4242 4242 4242 4242 </p>
+            </article>)
+      }
+                              {/* //! HERE 5 */}
+      <form id="payment-form" onSubmit={handleSubmit}>
         <CardElement id="card-element" options={cardStyle}
                      onChange={handleChange}
         />
